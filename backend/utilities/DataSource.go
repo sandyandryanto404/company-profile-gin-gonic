@@ -1,3 +1,14 @@
+/**
+ * This file is part of the Sandy Andryanto Company Profile Website.
+ *
+ * @author     Sandy Andryanto <sandy.andryanto404@gmail.com>
+ * @copyright  2024
+ *
+ * For the full copyright and license information,
+ * please view the LICENSE.md file that was distributed
+ * with this source code.
+ */
+
 package utilities
 
 import (
@@ -25,9 +36,6 @@ func SetupDB() *gorm.DB {
 
 func Config() {
 	db := SetupDB()
-	db.Set("gorm:table_options", "ENGINE=InnoDB").AutoMigrate(models.LoginAttempt{})
-	db.Set("gorm:table_options", "ENGINE=InnoDB").AutoMigrate(models.PasswordReset{})
-	db.Set("gorm:table_options", "ENGINE=InnoDB").AutoMigrate(models.Role{})
 	db.Set("gorm:table_options", "ENGINE=InnoDB").AutoMigrate(models.User{})
 	db.Set("gorm:table_options", "ENGINE=InnoDB").AutoMigrate(models.Contact{})
 	db.Set("gorm:table_options", "ENGINE=InnoDB").AutoMigrate(models.Customer{})
@@ -36,10 +44,6 @@ func Config() {
 	db.Set("gorm:table_options", "ENGINE=InnoDB").AutoMigrate(models.Service{})
 	db.Set("gorm:table_options", "ENGINE=InnoDB").AutoMigrate(models.Slider{})
 	db.Set("gorm:table_options", "ENGINE=InnoDB").AutoMigrate(models.Team{})
-	db.Set("gorm:table_options", "ENGINE=InnoDB").AutoMigrate(models.UserNotification{}).AddForeignKey("user_id", "users(id)", "RESTRICT", "RESTRICT")
-	db.Set("gorm:table_options", "ENGINE=InnoDB").AutoMigrate(models.UserVerification{}).AddForeignKey("user_id", "users(id)", "RESTRICT", "RESTRICT")
-	db.Set("gorm:table_options", "ENGINE=InnoDB").AutoMigrate(models.UserRole{}).AddForeignKey("user_id", "users(id)", "RESTRICT", "RESTRICT")
-	db.Set("gorm:table_options", "ENGINE=InnoDB").AutoMigrate(models.UserRole{}).AddForeignKey("role_id", "roles(id)", "RESTRICT", "RESTRICT")
 	db.Set("gorm:table_options", "ENGINE=InnoDB").AutoMigrate(models.Article{}).AddForeignKey("user_id", "users(id)", "RESTRICT", "RESTRICT")
 	db.Set("gorm:table_options", "ENGINE=InnoDB").AutoMigrate(models.ArticleComment{}).AddForeignKey("user_id", "users(id)", "RESTRICT", "RESTRICT")
 	db.Set("gorm:table_options", "ENGINE=InnoDB").AutoMigrate(models.ArticleComment{}).AddForeignKey("article_id", "articles(id)", "RESTRICT", "RESTRICT")
