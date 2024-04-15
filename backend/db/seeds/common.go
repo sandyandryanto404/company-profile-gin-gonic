@@ -209,13 +209,13 @@ func CreateFaq(s goseeder.Seeder) {
 	db.Model(&models.Faq{}).Where("id <> 0").Count(&totalRow)
 	if totalRow == 0 {
 		for i := 1; i <= 10; i++ {
-			customer := models.Faq{
+			faq := models.Faq{
 				Question: faker.Sentence(),
 				Answer:   randomdata.Paragraph(),
 				Sort:     uint16(i),
 				Status:   1,
 			}
-			db.Create(&customer)
+			db.Create(&faq)
 		}
 	}
 }
