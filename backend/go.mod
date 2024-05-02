@@ -3,6 +3,10 @@ module backend
 go 1.20
 
 require (
+	github.com/Pallinder/go-randomdata v1.2.0
+	github.com/bxcodec/faker/v4 v4.0.0-beta.3
+	github.com/google/uuid v1.6.0
+	github.com/gosimple/slug v1.14.0
 	github.com/jinzhu/gorm v1.9.16
 	github.com/joho/godotenv v1.5.1
 	github.com/kristijorgji/goseeder v1.0.5
@@ -10,9 +14,7 @@ require (
 
 require (
 	filippo.io/edwards25519 v1.1.0 // indirect
-	github.com/Pallinder/go-randomdata v1.2.0 // indirect
 	github.com/bxcodec/faker v2.0.1+incompatible // indirect
-	github.com/bxcodec/faker/v4 v4.0.0-beta.3 // indirect
 	github.com/bytedance/sonic v1.11.3 // indirect
 	github.com/chenzhuoyu/base64x v0.0.0-20230717121745-296ad89f973d // indirect
 	github.com/chenzhuoyu/iasm v0.9.1 // indirect
@@ -25,8 +27,6 @@ require (
 	github.com/go-playground/validator/v10 v10.19.0 // indirect
 	github.com/go-sql-driver/mysql v1.8.0 // indirect
 	github.com/goccy/go-json v0.10.2 // indirect
-	github.com/google/uuid v1.6.0 // indirect
-	github.com/gosimple/slug v1.14.0 // indirect
 	github.com/gosimple/unidecode v1.0.1 // indirect
 	github.com/jinzhu/inflection v1.0.0 // indirect
 	github.com/json-iterator/go v1.1.12 // indirect

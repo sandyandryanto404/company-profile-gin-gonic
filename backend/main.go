@@ -14,6 +14,7 @@ package main
 import (
 	_ "backend/db/seeds"
 	"backend/utilities"
+	"backend/routes"
 	"database/sql"
 	"fmt"
 	"github.com/joho/godotenv"
@@ -32,8 +33,8 @@ func main() {
 	goseeder.WithSeeder(connectToDbOrDie, func() {})
 	db := utilities.SetupDB()
 	db.LogMode(true)
-	//r := routes.SetupRoutes(db)
-	//r.Run("0.0.0.0:" + os.Getenv("APP_PORT"))
+	r := routes.SetupRoutes(db)
+	r.Run("0.0.0.0:" + os.Getenv("APP_PORT"))
 }
 
 func connectToDbOrDie() *sql.DB {

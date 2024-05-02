@@ -21,6 +21,7 @@ type User struct {
 	Email        string         `json:"email" gorm:"index;size:191;not null"`
 	Phone        string         `json:"phone" gorm:"index;size:191;default:null"`
 	Password     string         `json:"password" gorm:"index;size:255;not null"`
+	Salt         string         `json:"salt" gorm:"index;size:255;"`
 	Image        string         `json:"image" gorm:"index;size:191;default:null;"`
 	FirstName    string         `json:"first_name" gorm:"index;size:191;default:null;"`
 	LastName     string         `json:"last_name" gorm:"index;size:191;default:null;"`
@@ -28,7 +29,7 @@ type User struct {
 	Country      string         `json:"country" gorm:"index;size:191;default:null;"`
 	Address      sql.NullString `json:"address"  gorm:"type:text;default:null;"`
 	AboutMe      sql.NullString `json:"about_me"  gorm:"type:text;default:null;"`
-	ResetToken   string         `json:"reset_token" gorm:"index;size:191;default:null;"`
+	ResetToken   sql.NullString `json:"reset_token" gorm:"index;size:191;default:null;"`
 	ConfirmToken string         `json:"confirm_token" gorm:"index;size:191;default:null;"`
 	Status       uint8          `json:"status" gorm:"index;default:0"`
 	CreatedAt    time.Time      `gorm:"index;default:CURRENT_TIMESTAMP" json:"created_at"`

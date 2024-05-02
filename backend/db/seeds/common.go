@@ -80,6 +80,7 @@ func CreateUser(s goseeder.Seeder) {
 				AboutMe:      sql.NullString{String: randomdata.Paragraph(), Valid: true},
 				Email:        randomdata.Email(),
 				Phone:        randomdata.PhoneNumber(),
+				Salt:		  key,
 				Password:     encrypted,
 				Status:       1,
 				ConfirmToken: (uuid.New()).String(),
@@ -226,15 +227,15 @@ func CreateService(s goseeder.Seeder) {
 	db.Model(&models.Service{}).Where("id <> 0").Count(&totalRow)
 	if totalRow == 0 {
 		var icons = [...]string{
-			"fas fa-archive",
-			"fas fa-atom",
-			"fas fa-award",
-			"fas fa-balance-scale",
-			"fas fa-blender",
-			"fas fa-book-reader",
-			"fas fa-box-open",
-			"fas fa-cash-register",
-			"fas fa-cloud-download-alt",
+			"bi bi-bicycle",
+            "bi bi-bookmarks",
+            "bi bi-box",
+            "bi bi-building-add",
+            "bi bi-calendar2-check",
+            "bi bi-cart4",
+            "bi bi-clipboard-data",
+            "bi bi-gift",
+            "bi bi-person-bounding-box",
 		}
 		for i, icon := range icons {
 			service := models.Service{
