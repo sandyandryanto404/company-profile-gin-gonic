@@ -38,21 +38,6 @@ type ArticleResult struct {
 	Categories  string    `json:"categories"`
 }
 
-type ArticleResultDetail struct {
-	Id          uint64    `json:"id"`
-	Title       string    `json:"title"`
-	Slug        string    `json:"slug"`
-	Description string    `json:"description"`
-	Content     string    `json:"content"`
-	CreatedAt   time.Time `json:"created_at"`
-	FirstName   string    `json:"first_name"`
-	LastName    string    `json:"last_name"`
-	Image       string    `json:"image"`
-	Gender      string    `json:"gender"`
-	AboutMe     string    `json:"about_me"`
-	Categories  string    `json:"categories"`
-}
-
 type FormMessage struct {
 	Name    string `json:"name"`
 	Email   string `json:"email"`

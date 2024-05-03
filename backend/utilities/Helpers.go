@@ -21,7 +21,6 @@ import (
 	"io"
 )
 
-
 func NewNullString(s string) sql.NullString {
 	if len(s) == 0 {
 		return sql.NullString{}
