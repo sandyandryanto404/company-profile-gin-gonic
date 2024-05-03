@@ -8,25 +8,25 @@
  * please view the LICENSE.md file that was distributed
  * with this source code.
  */
- 
- package routes
 
- import "backend/controllers"
- 
- func PortfolioRoutes() []RouteSource {
-	 routes := []RouteSource{
-		 {
-			 "/portfolio/list",
-			 "GET",
-			 false,
-			 controllers.PortfolioList,
-		 },
-		 {
+package routes
+
+import "backend/controllers"
+
+func PortfolioRoutes() []RouteSource {
+	routes := []RouteSource{
+		{
+			"/portfolio/list",
+			"GET",
+			false,
+			controllers.PortfolioList,
+		},
+		{
 			"/portfolio/detail/:id",
-			"POST",
+			"GET",
 			false,
 			controllers.PortfolioDetail,
 		},
-	 }
-	 return routes
- }
+	}
+	return routes
+}

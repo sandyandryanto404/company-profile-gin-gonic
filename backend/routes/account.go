@@ -8,21 +8,21 @@
  * please view the LICENSE.md file that was distributed
  * with this source code.
  */
- 
- package routes
 
- import "backend/controllers"
- 
- func AccountRoutes() []RouteSource {
-	 routes := []RouteSource{
-		 {
-			 "/account/profile",
-			 "GET",
-			 true,
-			 controllers.ProfileDetail,
-		 },
-		 {
-			"/account/profile",
+package routes
+
+import "backend/controllers"
+
+func AccountRoutes() []RouteSource {
+	routes := []RouteSource{
+		{
+			"/account/profile/detail",
+			"GET",
+			true,
+			controllers.ProfileDetail,
+		},
+		{
+			"/account/profile/update",
 			"POST",
 			true,
 			controllers.ProfileUpdate,
@@ -39,6 +39,6 @@
 			true,
 			controllers.ProfileUpload,
 		},
-	 }
-	 return routes
- }
+	}
+	return routes
+}

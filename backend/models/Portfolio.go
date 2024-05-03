@@ -18,7 +18,7 @@ import (
 
 type Portfolio struct {
 	Id          uint64       `json:"id" gorm:"primary_key"`
-	CustomerId  uint64       `json:"user_id" gorm:"index;not null"`
+	CustomerId  uint64       `json:"customer_id" gorm:"index;not null"`
 	ReferenceId uint64       `json:"reference_id" gorm:"index;not null"`
 	Title       string       `json:"title" gorm:"index;size:255;not null"`
 	Description string       `json:"description"  gorm:"type:text;not null"`

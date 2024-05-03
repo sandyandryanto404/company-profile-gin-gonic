@@ -8,7 +8,7 @@
  * please view the LICENSE.md file that was distributed
  * with this source code.
  */
- 
+
 package routes
 
 import "backend/controllers"
@@ -64,7 +64,7 @@ func PageRoutes() []RouteSource {
 			controllers.PageSubscribe,
 		},
 		{
-			"/page/uploads/:param",
+			"/page/uploads",
 			"GET",
 			false,
 			controllers.PageGetFile,
