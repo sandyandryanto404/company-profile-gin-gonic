@@ -72,5 +72,5 @@ func PortfolioDetail(c *gin.Context) {
 	var images []models.PortfolioImage
 	db.Where("portfolio_id = " + c.Param("id")).Order("id").Find(&images)
 
-	c.JSON(http.StatusOK, gin.H{"portfolio": portfolios, "images": images})
+	c.JSON(http.StatusOK, gin.H{"portfolio": portfolios[0], "images": images})
 }

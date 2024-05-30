@@ -46,7 +46,7 @@ export class AboutComponent implements OnInit {
   loadContent(): void{
     this.pageService.about().subscribe((response: any) => {
         setTimeout(() => {
-            this.content = response.data;
+            this.content = response;
             this.loading = false;
         }, 1500)
     }, (error) => {

@@ -46,7 +46,7 @@ export class FaqComponent implements OnInit {
   loadContent(): void{
     this.pageService.faq().subscribe((response: any) => {
         setTimeout(() => {
-            this.content = response.data;
+            this.content = response;
             this.loading = false;
         }, 1500)
     }, (error) => {

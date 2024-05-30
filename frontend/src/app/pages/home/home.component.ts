@@ -55,7 +55,7 @@ export class HomeComponent implements OnInit {
   loadContent(): void{
     this.pageService.home().subscribe((response: any) => {
         setTimeout(() => {
-            this.content = response.data;
+            this.content = response;
             this.loading = false;
         }, 1500)
     }, (error) => {

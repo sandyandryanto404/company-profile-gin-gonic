@@ -38,6 +38,33 @@ type ArticleResult struct {
 	Categories  string    `json:"categories"`
 }
 
+// type PortfolioResult struct {
+// 	Id            	uint64       `json:"id"`
+// 	CustomerName  	uint64       `json:"customer_name"`
+// 	CategoryName  	uint64       `json:"category_name"`
+// 	Title         	string       `json:"title"`
+// 	Description 	string       `json:"description"  gorm:"type:text;not null"`
+// 	ProjectDate 	sql.NullTime `gorm:"index;default:CURRENT_TIMESTAMP" json:"project_date"`
+// 	ProjectUrl  	string       `json:"project_url" gorm:"type:text;default:null;"`
+// 	Sort        	uint16       `json:"sort" gorm:"index;default:0"`
+// 	Status      	uint8        `json:"status" gorm:"index;default:0"`
+// 	CreatedAt   	time.Time    `gorm:"index;default:CURRENT_TIMESTAMP" json:"created_at"`
+// 	UpdatedAt   	time.Time    `gorm:"index;default:CURRENT_TIMESTAMP" json:"updated_at"`
+// }
+
+type TestimonialResult struct {
+	Id         		uint64    `json:"id"`
+	CustomerName	string    `json:"customer_name"`
+	Image      		string    `json:"image"`
+	Name       		string    `json:"name"`
+	Position   		string    `json:"position"`
+	Quote      		string    `json:"quote"`
+	Sort       		uint16    `json:"sort"`
+	Status     		uint8     `json:"status"`
+	CreatedAt  		time.Time `json:"created_at"`
+	UpdatedAt  		time.Time `json:"updated_at"`
+}
+
 type FormMessage struct {
 	Name    string `json:"name"`
 	Email   string `json:"email"`
@@ -84,6 +111,9 @@ func PageHome(c *gin.Context) {
 		WHERE a.status = 1 ORDER BY RAND() LIMIT 3 
 	`).Scan(&articles)
 
+	var testimonials []TestimonialResult
+	db.Raw(`SELECT t.*, c.name customer_name FROM testimonials t INNER JOIN customers c ON c.id = t.customer_id WHERE t.status = 1 ORDER BY RAND() LIMIT 1`).Scan(&testimonials)
+
 	header := map[string]string{
 		"title":       faker.Sentence(),
 		"description": randomdata.Paragraph(),
@@ -95,10 +125,7 @@ func PageHome(c *gin.Context) {
 	var services []models.Service
 	db.Where("status = 1").Limit(4).Order("RAND()").Find(&services)
 
-	var testimonial models.Testimonial
-	db.Where("status = 1").Order("RAND()").First(&testimonial)
-
-	c.JSON(http.StatusOK, gin.H{"header": header, "sliders": sliders, "services": services, "testimonial": testimonial, "articles": articles})
+	c.JSON(http.StatusOK, gin.H{"header": header, "sliders": sliders, "services": services, "testimonial": testimonials[0], "articles": articles})
 }
 
 func PageAbout(c *gin.Context) {
@@ -118,7 +145,7 @@ func PageAbout(c *gin.Context) {
 		"description": randomdata.Paragraph(),
 	}
 
-	var teams models.Team
+	var teams[]models.Team
 	db := c.MustGet("db").(*gorm.DB)
 	db.Where("status = 1").Order("RAND()").Find(&teams)
 
@@ -134,9 +161,9 @@ func PageService(c *gin.Context) {
 
 	db := c.MustGet("db").(*gorm.DB)
 
-	var services models.Service
-	var customers models.Customer
-	var testimonials models.Testimonial
+	var services []models.Service
+	var customers []models.Customer
+	var testimonials []models.Testimonial
 
 	db.Where("status = 1").Order("RAND()").Find(&services)
 	db.Where("status = 1").Order("RAND()").Find(&customers)
@@ -148,8 +175,8 @@ func PageService(c *gin.Context) {
 func PageFaq(c *gin.Context) {
 
 	db := c.MustGet("db").(*gorm.DB)
-	var faq1 models.Faq
-	var faq2 models.Faq
+	var faq1 []models.Faq
+	var faq2 []models.Faq
 
 	db.Where("status = 1 AND sort <= 5").Order("RAND()").Find(&faq1)
 	db.Where("status = 1 AND sort > 5").Order("RAND()").Find(&faq2)
@@ -161,7 +188,7 @@ func PageContact(c *gin.Context) {
 
 	db := c.MustGet("db").(*gorm.DB)
 
-	var services models.Service
+	var services []models.Service
 	db.Where("status = 1").Limit(4).Order("RAND()").Find(&services)
 
 	c.JSON(http.StatusOK, gin.H{"message": "ok", "status": true, "services": services})

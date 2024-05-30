@@ -47,7 +47,7 @@ export class DetailComponent implements OnInit {
     let id = this.route.snapshot.params['id']
     this.portfolioService.detail(id).subscribe((response: any) => {
         setTimeout(() => {
-            this.content = response.data;
+            this.content = response.portfolio;
             this.loading = false;
         }, 1500)
     }, (error) => {

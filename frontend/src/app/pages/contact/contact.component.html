@@ -183,7 +183,7 @@
               </div>
           </div>
         }@else{
-          @for (service of content.services; track service; let idx = $index) {
+          @for (service of content; track service; let idx = $index) {
             <div class="col">
               <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i [ngClass]="service.icon"></i></div>
               <div class="h5 mb-2">{{ service.title }}</div>

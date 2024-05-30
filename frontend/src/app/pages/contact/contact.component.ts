@@ -57,7 +57,7 @@ export class ContactComponent implements OnInit {
   loadContent(): void{
     this.pageService.contact().subscribe((response: any) => {
         setTimeout(() => {
-            this.content = response.data;
+            this.content = response.services;
             this.loading = false;
         }, 1500)
     }, (error) => {

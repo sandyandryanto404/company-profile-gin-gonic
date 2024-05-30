@@ -6,6 +6,7 @@ import (
 
 	"github.com/gin-gonic/gin"
 	"github.com/jinzhu/gorm"
+	"github.com/gin-contrib/cors"
 )
 
 type RouteSource struct {
@@ -17,6 +18,7 @@ type RouteSource struct {
 
 func SetupRoutes(db *gorm.DB) *gin.Engine {
 	r := gin.Default()
+	r.Use(cors.Default())
 	r.Use(func(c *gin.Context) {
 		c.Set("db", db)
 		c.Set("word", "Hello World")
