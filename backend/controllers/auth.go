@@ -8,16 +8,16 @@
  * please view the LICENSE.md file that was distributed
  * with this source code.
  */
- 
+
 package controllers
 
 import (
-	"backend/utilities"
 	"backend/models"
-	"database/sql"
 	service "backend/services"
-	"encoding/hex"
+	"backend/utilities"
 	"crypto/rand"
+	"database/sql"
+	"encoding/hex"
 	"net/http"
 	"strings"
 
@@ -26,8 +26,8 @@ import (
 )
 
 type LoginInput struct {
-	Email string `json:"email"`
-	Password   string `json:"password"`
+	Email    string `json:"email"`
+	Password string `json:"password"`
 }
 
 type RegisterInput struct {
@@ -140,11 +140,11 @@ func AuthRegister(c *gin.Context) {
 	token := utilities.Encrypt(input.Email, key)
 
 	User := models.User{
-		Email:             input.Email,
-		Password:          encrypted,
-		Status:            0,
-		ConfirmToken: 	   token,
-		Salt:              key,
+		Email:        input.Email,
+		Password:     encrypted,
+		Status:       1,
+		ConfirmToken: token,
+		Salt:         key,
 	}
 
 	db.Create(&User)
@@ -196,7 +196,7 @@ func AuthEmailForgot(c *gin.Context) {
 	token := utilities.Encrypt(input.Email, key)
 
 	db.Exec("UPDATE users SET reset_token = ? WHERE email = ? ", token, input.Email)
-	c.JSON(http.StatusOK, gin.H{"data": "We have e-mailed your password reset link!"})
+	c.JSON(http.StatusOK, gin.H{"message": "We have e-mailed your password reset link!", "token": token})
 }
 
 func AuthEmailReset(c *gin.Context) {
@@ -255,5 +255,5 @@ func AuthEmailReset(c *gin.Context) {
 	updatedInput.Salt = key
 	db.Model(&user).Updates(updatedInput)
 
-	c.JSON(http.StatusOK, gin.H{"data": "Your password has been reset!"})
+	c.JSON(http.StatusOK, gin.H{"message": "Your password has been reset!"})
 }

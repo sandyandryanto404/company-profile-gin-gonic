@@ -68,12 +68,13 @@ export class RegisterComponent implements OnInit {
     this.failed = false;
     let formSubmit = {
       email: form.value.email,
-      password: form.value.password
+      password: form.value.password,
+      password_confirm: form.value.password_confirm
     }
     this.authService.register(formSubmit).subscribe({
-      next: response => {
+      next: () => {
         setTimeout(() => {
-          this.messageSuccess = response.message;
+          this.messageSuccess = "You need to confirm your account. We have sent you an activation code, please check your email.";
           this.loadingSubmit = false;
           this.failed = false;
           form.reset();
@@ -88,7 +89,7 @@ export class RegisterComponent implements OnInit {
       error: err => {
         this.loadingSubmit = false;
         this.failed = true;
-        this.messageFailed = err.error.message
+        this.messageFailed = err.error.error
       }
     });
   }

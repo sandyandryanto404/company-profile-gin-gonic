@@ -44,7 +44,7 @@ export class PasswordComponent implements OnInit {
   };
 
   constructor(private accountService: AccountService, private titleService:Title, private router: Router, private storageService: StorageService) {
-    this.titleService.setTitle("Sign In | " + this.title);
+    this.titleService.setTitle("Change Password | " + this.title);
   }
 
   ngOnInit(){
@@ -67,14 +67,14 @@ export class PasswordComponent implements OnInit {
       this.loadingSubmit = true;
       this.failed = false;
       let formSubmit = {
-        oldPassword: form.value.current_password,
-        newPassword: form.value.password,
-        confirmNewPassword: form.value.password_confirm
+        old_password: form.value.current_password,
+        password: form.value.password,
+        password_confirm: form.value.password_confirm
       }
       this.accountService.passwordUpdate(formSubmit).subscribe({
         next: response => {
           setTimeout(() => {
-            this.messageSuccess = response.message;
+            this.messageSuccess = response.data;
             this.loadingSubmit = false;
             this.failed = false;
             form.reset();
@@ -86,7 +86,7 @@ export class PasswordComponent implements OnInit {
         error: err => {
           this.loadingSubmit = false;
           this.failed = true;
-          this.messageFailed = err.error.message
+          this.messageFailed = err.error.error
         }
       });
     }

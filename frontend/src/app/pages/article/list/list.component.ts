@@ -69,8 +69,8 @@ export class ListComponent implements OnInit {
     var queryString = Object.keys(params).map(key => key + '=' + params[key]).join('&');
     this.articleService.list(queryString).subscribe((response: any) => {
         setTimeout(() => {
-            this.content = response.data;
-            this.continue = response.data.continue
+            this.content = response;
+            this.continue = response.continue
             this.loading = false;
         }, 1500)
     }, (error) => {

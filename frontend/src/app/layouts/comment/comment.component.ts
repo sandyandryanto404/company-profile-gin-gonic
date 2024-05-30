@@ -17,8 +17,8 @@ export class CommentComponent {
   }
 
   getClasses(comment:any){
-    if(comment.children.length === 0){
-        if(comment.parentId === null){
+    if(comment.Childern.length === 0){
+        if(parseInt(comment.ParentId) === 0){
             return "d-flex mb-4"
         }else{
             return "d-flex mt-4"

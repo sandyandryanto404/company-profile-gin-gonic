@@ -31,7 +31,7 @@ export class AccountService {
   }
 
   profileDetail(): Observable<any>{
-    return this.http.get(environment.backendURL+"/account/profile", { headers: this.authRequestHeader() });
+    return this.http.get(environment.backendURL+"/account/profile/detail", { headers: this.authRequestHeader() });
   }
 
   profileUpdate(data: any): Observable<any>{
@@ -39,13 +39,13 @@ export class AccountService {
   }
 
   passwordUpdate(data: any): Observable<any>{
-    return this.http.post(environment.backendURL+"/account/password/update", data, { headers: this.authRequestHeader() });
+    return this.http.post(environment.backendURL+"/account/password", data, { headers: this.authRequestHeader() });
   }
 
   profileUpload(data: any): Observable<any>{
     let token = window.sessionStorage.getItem("token");
     let headers = new HttpHeaders({ "Authorization": "Bearer "+token});
-    return this.http.post(environment.backendURL+"/account/profile/upload", data, { headers });
+    return this.http.post(environment.backendURL+"/account/upload", data, { headers });
   }
 
 }

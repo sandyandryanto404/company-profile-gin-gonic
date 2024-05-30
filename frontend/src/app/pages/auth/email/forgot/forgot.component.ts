@@ -64,7 +64,7 @@ export class ForgotComponent implements OnInit {
     this.authService.emailForgot(form.value).subscribe({
       next: response => {
         setTimeout(() => {
-          let token = response.data;
+          let token = response.token;
           this.messageSuccess = response.message;
           this.loadingSubmit = false;
           this.failed = false;
@@ -78,7 +78,7 @@ export class ForgotComponent implements OnInit {
       error: err => {
         this.loadingSubmit = false;
         this.failed = true;
-        this.messageFailed = err.error.message
+        this.messageFailed = err.error.error
       }
     });
   }

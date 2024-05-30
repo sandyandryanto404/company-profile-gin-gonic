@@ -84,7 +84,7 @@ export class LoginComponent implements OnInit {
       error: err => {
         this.loadingSubmit = false;
         this.failed = true;
-        this.messageFailed = err.error.message
+        this.messageFailed = err.error.error
       }
     });
 

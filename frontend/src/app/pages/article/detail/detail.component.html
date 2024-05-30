@@ -19,8 +19,8 @@
            <div class="d-flex align-items-center mt-lg-5 mb-4">
               <img class="img-fluid rounded-circle" width="50" [src]="content.gender === 'F' ? '/assets/female.png' : '/assets/male.png'" alt="..." />
               <div class="ms-3">
-                <div class="fw-bold">{{ content.firstName }} {{ content.lastName }}</div>
-                <div class="text-muted">{{ content.aboutMe }}</div>
+                <div class="fw-bold">{{ content.first_name }} {{ content.last_name }}</div>
+                <div class="text-muted">{{ content.about_me }}</div>
               </div>
             </div>
          }
@@ -39,10 +39,10 @@
                 <!-- Post title-->
                 <h1 class="fw-bolder mb-1">{{ content.title }}</h1>
                 <!-- Post meta content-->
-                <div class="text-muted fst-italic mb-2">{{ dateConvert(content.createdAt) }}</div>
+                <div class="text-muted fst-italic mb-2">{{ dateConvert(content.created_at) }}</div>
                 <!-- Post categories-->
-                @for (category of content.references; track category; let idx = $index) {
-                  <a class="badge bg-secondary text-decoration-none link-light me-1" href="#!">{{ category.name }}</a>
+                @for (category of content.categories.split(","); track category; let idx = $index) {
+                  <a class="badge bg-secondary text-decoration-none link-light me-1" href="#!">{{ category }}</a>
                 }
               }
            </header>

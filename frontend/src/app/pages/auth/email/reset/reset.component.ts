@@ -68,13 +68,14 @@ export class ResetComponent implements OnInit {
       this.failed = false;
       let formSubmit = {
         email: form.value.email,
-        password: form.value.password
+        password: form.value.password,
+        password_confirm: form.value.password_confirm
       }
       let token = this.route.snapshot.params['token']
       this.authService.emailReset(token, formSubmit).subscribe({
         next: response => {
           setTimeout(() => {
-            this.messageSuccess = response.message;
+            this.messageSuccess = response.data;
             this.loadingSubmit = false;
             this.failed = false;
             form.reset();
@@ -89,7 +90,7 @@ export class ResetComponent implements OnInit {
         error: err => {
           this.loadingSubmit = false;
           this.failed = true;
-          this.messageFailed = err.error.message
+          this.messageFailed = err.error.error
         }
       });
     }

@@ -78,16 +78,16 @@
                                     <input
                                       type="text"
                                       class="form-control"
-                                      name="firstName"
+                                      name="first_name"
                                       placeholder="First Name"
-                                      [(ngModel)]="form.firstName"
+                                      [(ngModel)]="form.first_name"
                                       required
-                                      #firstName="ngModel"
-                                      [ngClass]="{ 'is-invalid': f.submitted && firstName.errors }"
+                                      #first_name="ngModel"
+                                      [ngClass]="{ 'is-invalid': f.submitted && first_name.errors }"
                                     />
 
-                                    <div *ngIf="firstName.errors && f.submitted" class="invalid-feedback">
-                                      <div *ngIf="firstName.errors['required']">First name is required</div>
+                                    <div *ngIf="first_name.errors && f.submitted" class="invalid-feedback">
+                                      <div *ngIf="first_name.errors['required']">First name is required</div>
                                     </div>
 
                                 </div>
@@ -126,16 +126,16 @@
                                     <input
                                       type="text"
                                       class="form-control"
-                                      name="lastName"
+                                      name="last_name"
                                       placeholder="Last Name"
-                                      [(ngModel)]="form.lastName"
+                                      [(ngModel)]="form.last_name"
                                       required
-                                      #lastName="ngModel"
-                                      [ngClass]="{ 'is-invalid': f.submitted && lastName.errors }"
+                                      #last_name="ngModel"
+                                      [ngClass]="{ 'is-invalid': f.submitted && last_name.errors }"
                                     />
 
-                                    <div *ngIf="lastName.errors && f.submitted" class="invalid-feedback">
-                                      <div *ngIf="lastName.errors['required']">Last name is required</div>
+                                    <div *ngIf="last_name.errors && f.submitted" class="invalid-feedback">
+                                      <div *ngIf="last_name.errors['required']">Last name is required</div>
                                     </div>
 
                                 </div>

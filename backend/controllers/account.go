@@ -127,12 +127,12 @@ func PasswordUpdate(c *gin.Context) {
 	}
 
 	if len(strings.TrimSpace(input.OldPassword)) == 0 {
-		c.JSON(http.StatusBadRequest, gin.H{"error": "The old_passwword field is required.!"})
+		c.JSON(http.StatusBadRequest, gin.H{"error": "The old_password field is required.!"})
 		return
 	}
 
 	if len(strings.TrimSpace(input.Password)) == 0 {
-		c.JSON(http.StatusBadRequest, gin.H{"error": "The passwword field is required.!"})
+		c.JSON(http.StatusBadRequest, gin.H{"error": "The password field is required.!"})
 		return
 	}
 
@@ -176,7 +176,7 @@ func PasswordUpdate(c *gin.Context) {
 	updatedInput.Salt = key
 	db.Model(&user).Updates(updatedInput)
 
-	c.JSON(http.StatusOK, gin.H{"data": "Your password has been changed!"})
+	c.JSON(http.StatusOK, gin.H{"message": "Your password has been changed!"})
 
 }
 

@@ -48,9 +48,9 @@ export class ProfileComponent implements OnInit {
     address:"",
     country:"",
     email:"",
-    firstName:"",
+    first_name:"",
     gender:"",
-    lastName:"",
+    last_name:"",
     phone:""
   };
 
@@ -82,17 +82,17 @@ export class ProfileComponent implements OnInit {
         let user = response.data
 
         if(user.image){
-          this.image = environment.backendURL+"/Uploads/"+user.image
+          this.image = environment.backendURL+"/page/uploads?param="+user.image
         }
 
         this.countries = countries
-        this.form.aboutMe = user.aboutMe
-        this.form.address = user.address
+        this.form.aboutMe = user.about_me.String
+        this.form.address = user.address.String
         this.form.country = user.country
         this.form.email = user.email
-        this.form.firstName = user.firstName
+        this.form.first_name = user.first_name
         this.form.gender = user.gender
-        this.form.lastName = user.lastName
+        this.form.last_name = user.last_name
         this.form.phone = user.phone
         this.loading = false;
       }, 2000)
@@ -146,7 +146,7 @@ export class ProfileComponent implements OnInit {
             next: response => {
                setTimeout(() => {
                   this.loadingUpload = false;
-                  this.image = environment.backendURL+"/"+response.fileName
+                  this.image = environment.backendURL+"/page/uploads?param="+response.data
                }, 2000)
             },
             error: err => {
